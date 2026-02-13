@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💌</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 700;
+}
+
+body {
+  margin: 0;
+  background: #ffe6f0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 420px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.page {
+  display: none;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+}
+
+.page.active {
+  display: block;
+}
+
+/* Floating hearts */
+.floating-heart {
+  position: absolute;
+  color: red;
+  font-size: 18px;
+  animation: float 6s infinite linear;
+  opacity: 0.7;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-10vh); }
+}
+
+/* Envelope */
+.envelope {
+  width: 170px;
+  height: 110px;
+  background: #ffb6c1;
+  margin: auto;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 55px;
+  background: #ffc0cb;
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+}
+
+.seal {
+  position: absolute;
+  top: 38px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: red;
+}
+
+/* Heart box */
+.heart-box {
+  width: 90%;
+  max-width: 350px;
+  margin: auto;
+  background: #fff0f5;
+  padding: 20px;
+  border-radius: 15px;
+  animation: pop 0.6s ease;
+}
+
+.heart {
+  font-size: 38px;
+  color: red;
+  margin-bottom: 10px;
+}
+
+@keyframes pop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+/* Image popup */
+.popup-img {
+  width: 90%;
+  max-width: 300px;
+  border-radius: 20px;
+  animation: pop 0.6s ease;
+}
+
+/* Buttons */
+.nav-btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 7px 14px;
+  border: none;
+  border-radius: 20px;
+  background: hotpink;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Floating Hearts -->
+  <div class="floating-heart" style="left:5%">❤️</div>
+  <div class="floating-heart" style="left:20%">💗</div>
+  <div class="floating-heart" style="left:40%">❤️</div>
+  <div class="floating-heart" style="left:60%">💗</div>
+  <div class="floating-heart" style="left:80%">❤️</div>
+
+  <!-- Page 1 -->
+  <div class="page active">
+    <div class="envelope" onclick="nextPage()">
+      <div class="seal">❤️</div>
+    </div>
+    <p>Touch the envelope 💌</p>
+  </div>
+
+  <!-- Page 2 -->
+  <div class="page">
+    <div class="heart-box">
+      <div class="heart">❤️</div>
+      <p>
+        Hey Harsh,<br><br>
+        Thank you for coming into my life. You truly feel like a blessing to me.
+        Everything feels more beautiful and meaningful when I’m with you.
+        I’m really grateful to have a partner like you by my side.<br><br>
+
+        Sometimes I wish I had met you a little earlier in my life.
+        This is my first Valentine’s Day ever, and I’m so happy to celebrate it with you.
+        I truly believe and hope that I will celebrate my last Valentine’s Day with you too.<br><br>
+
+        I love you. ❤️
+      </p>
+    </div>
+
+    <div class="nav-btns">
+      <button class="btn" onclick="prevPage()">Previous</button>
+      <button class="btn" onclick="nextPage()">Next</button>
+    </div>
+  </div>
+
+  <!-- Page 3 -->
+  <div class="page">
+    <img src="C:\Users\Simran Kumari\OneDrive\Desktop\usss.jpg" class="popup-img">
+    <p>Our little memory 💖</p>
+    <div class="nav-btns">
+      <button class="btn" onclick="prevPage()">Previous</button>
+      <button class="btn" onclick="nextPage()">Next</button>
+    </div>
+  </div>
+
+  <!-- Page 4 -->
+  <div class="page">
+    <div class="heart-box">
+      <p>
+        Distance may keep us apart,  
+        but love keeps us together.  
+        One day, I’ll run into your arms again. 💕
+      </p>
+    </div>
+    <div class="nav-btns">
+      <button class="btn" onclick="prevPage()">Previous</button>
+      <button class="btn" onclick="nextPage()">Next</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let currentPage = 0;
+const pages = document.querySelectorAll('.page');
+
+function showPage(index) {
+  pages.forEach(p => p.classList.remove('active'));
+  pages[index].classList.add('active');
+}
+
+function nextPage() {
+  if (currentPage < pages.length - 1) {
+    currentPage++;
+    showPage(currentPage);
+  }
+}
+
+function prevPage() {
+  if (currentPage > 0) {
+    currentPage--;
+    showPage(currentPage);
+  }
+}
+
+document.querySelectorAll('.floating-heart').forEach(h => {
+  h.style.animationDuration = Math.random() * 5 + 4 + "s";
+});
+</script>
+
+</body>
+</html>
